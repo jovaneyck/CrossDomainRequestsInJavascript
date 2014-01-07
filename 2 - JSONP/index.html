@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cross-domain request using JSONP</title>
+</head>
+<body>
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script>
+		function myCallbackFunction(data){
+			$('body').text(data.response);
+		}
+	</script>
+	<script src='http://localhost:3001?callback=myCallbackFunction'></script>
+</body>
+</html>

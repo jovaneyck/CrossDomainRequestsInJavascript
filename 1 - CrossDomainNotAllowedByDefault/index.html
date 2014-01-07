@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AJAX cross-domain requests are not allowed by default</title>
+</head>
+<body>
+	<div id="get-result"></div>
+	<div id="post-result"></div>
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script>
+		var url = 'http://localhost:3001';
+		$.get(url)
+			.done(function(data){
+				$('#get-result').text(data.response);
+			}).fail(function(){
+				$('#get-result').text('GET to '+url+' failed!');
+			});
+
+		$.post(url, {data: 'some random data'})
+			.done(function(data){
+				$('#post-result').text(data.response);
+			}).fail(function(){
+				$('#post-result').text('POST to '+url+' failed!');
+			});
+	</script>
+</body>
+</html>

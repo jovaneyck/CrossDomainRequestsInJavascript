@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Using a proxy</title>
+</head>
+<body>
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script>
+		var url = 'http://localhost:3000/proxy';
+		$.get(url, {urlToFetch: 'http://localhost:3001'})
+			.done(function(data){
+				$('body').text(data.response);
+			}).fail(function(){
+				$('body').text('Request to '+url+' failed!');
+			});
+	</script>
+</body>
+</html>

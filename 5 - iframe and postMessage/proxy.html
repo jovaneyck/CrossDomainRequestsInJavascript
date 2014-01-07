@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Proxy for 3001 domain</title>
+</head>
+<body>
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script>
+		//Start listening for proxy requests
+		window.addEventListener(
+			"message", 
+			onReceiveRequestForProxy,
+			false
+		);
+
+		function onReceiveRequestForProxy(request){
+			var url = request.data.url;
+			$.get(url)
+				.done(function(data){
+					forwardResponse(data);
+				});
+		}
+
+		function forwardResponse(data){
+			var originOfParent = 'http://localhost:3000';
+			parent.postMessage(data, originOfParent);
+		}
+	</script>
+</body>
+</html>

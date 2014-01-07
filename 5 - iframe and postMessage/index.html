@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cross-domain request using a client-side proxy script and some iframe hacking</title>
+</head>
+<body>
+	<!--Load the client-side proxy script from a different origin-->
+	<iframe id="proxy" src="http://localhost:3001/proxy.html" style="width:0px; height: 0px;" frameborder="0"></iframe>
+	<div id="results"></div>
+
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script>
+		//Listen to proxy responses
+		window.addEventListener(
+			"message", 
+			onReceiveResponse,
+			false
+		);
+
+		function onReceiveResponse(event) {
+			var data = event.data;
+			$('#results').text(data.response);
+		}
+
+		//Wait for proxy iframe to load
+		$('#proxy').load(function(){
+			sendRequestToProxy();
+		});
+
+		function sendRequestToProxy(){
+				var urlToGet = "http://localhost:3001"; //can be any HTTP request in the 3001 origin
+				var proxyParameters = {
+					url : urlToGet
+				};
+				var originOfProxy = 'http://localhost:3001';
+
+				var proxyWindow = $("#proxy")[0].contentWindow;
+				proxyWindow.postMessage(proxyParameters, originOfProxy);
+			}
+	</script>
+</body>
+</html>
