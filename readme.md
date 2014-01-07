@@ -1,7 +1,7 @@
 Cross-Domain requests in Javascript
 ===============================================
 
-**A detailed explanation can be found on my [blog](http://jvaneyck.wordpress.com/2013/12/22/cross-domain-requests-in-javascript/)**
+**A detailed explanation can be found on my [blog](http://wp.me/p2WOmB-bb)**
 
 In order to run the examples:
 
