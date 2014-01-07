@@ -15,7 +15,7 @@
 
 		function onReceiveRequestForProxy(request){
 			var url = request.data.url;
-			$.get(url)
+			$.get(url) //This code resides in the 3001 domain, so this request isn't cross domain!
 				.done(function(data){
 					forwardResponse(data);
 				});
